@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+// JSON array part
 function Design() {
   const items = [
     {
@@ -54,6 +54,7 @@ function Design() {
     },
   ];
 
+    // delete button function part
   const [cartitems, setCartitems] = useState(items);
   const removeItems = (id) => {
     setCartitems((previousItems) =>
@@ -61,21 +62,25 @@ function Design() {
     );
   };
 
+  // show modal part
   const [showModal, setShowModal] = useState(false);
+  // open modal part
   const openModal = () => {
     setShowModal(true);
   };
+  // close modal part
   const closeModal = () => {
     setShowModal(false);
   };
 
-  // console.log(items);
+    //  add up function 
   const total = cartitems.reduce((sum, item) => sum + item.price, 0);
 
   return (
+    // UI PART
     <div>
       {/* WHITE BACKGROUND PART */}
-      <div className="bg-white p-20 my-10 mx-10 ">
+      <div className="bg-white p-20 my-10 mx-5 ">
         <h1 className=" text-xl -mt-5 font-bold">Cart</h1>
         <small className=" text-gray-400 text-xs">
           Access courses and tutors you have liked
@@ -85,19 +90,21 @@ function Design() {
 
         <div className=" md:flex gap-20 ">
           <div>
+
+            {/* function to display  items in cart */}
             {cartitems.length > 0 ? (
               <div>
                 {cartitems.map((product) => (
                   <div key={product.id} className=" md:flex gap-20 mt-5">
-                    {/* FIRST PICTURE AND TEXT PART */}
 
+                    {/* FIRST PICTURE AND TEXT PART */}
                     <div className="flex gap-5 my-5">
-                      {/* IMAGE */}
+                      {/* course image */}
                       <div>
                         <img
                           className=" w-40 h-24 rounded "
                           src={product.cover_image_url}
-                          alt="image-1"
+                          alt="course image"
                         />
                       </div>
                       {/* TEXT PART */}
@@ -112,6 +119,8 @@ function Design() {
                             />
                         </div>
                         <div className="flex gap-2">
+
+                          {/* tutor image */}
                           <img
                             src={product.tutor.avatar}
                             className=" h-8 w-8 rounded"
@@ -131,7 +140,6 @@ function Design() {
                         />
 
                         {/* ICONS PART */}
-                        {/* LIVE & COMPUTER ICON PART */}
                         <div className=" flex gap-2  text-gray-400 text-xs">
                           <div className="flex gap-1">
                             <img
@@ -171,7 +179,7 @@ function Design() {
           </div>
 
           {/* ORDER SUMMARY PART */}
-          <div className="ml-5 mt-10">
+          <div className="gap-20 mt-10">
             <strong> Order Summary</strong>
             <div className="flex justify-between mt-5">
               <p className=" text-gray-400 text-xs"> {items.length} courses</p>
@@ -180,20 +188,26 @@ function Design() {
                 N{total.toLocaleString()}
               </p>
             </div>
+
             <div className="flex justify-between mt-2">
               <strong className=" text-xs"> Total </strong>
               <strong className=" text-xs"> N{total.toLocaleString()} </strong>
             </div>
+
+              <div>
+              {/* Mark as paid button */}
             <button
               onClick={openModal}
-              className="text-white bg-green-500 p-2 mt-3 h-10 w-70 rounded-3xl"
+              className="text-white bg-green-500 p-2 mx-5 mt-3 h-10 w-60 rounded-3xl"
             >
               {" "}
               Mark as Paid{" "}
             </button>
+            </div>
           </div>
         </div>
       </div>
+
       {/* MODAL PART */}
       {showModal && (
         <div className="fixed top-0 left-0 w-full h-full bg-black/60 flex items-center justify-center">
@@ -203,12 +217,16 @@ function Design() {
               alt="congratulationsicon"
               className="mx-auto h-20 w-20"
             />
+
+            {/* Modal message part */}
             <h1 className="font-bold mt-5">Payment Successful</h1>
             <p className="text-xs text-gray-400">
               {" "}
               Payment confirmation has been sent to your email. You can view
               payment receipt in transaction history.
             </p>
+            
+            {/* Close modal button */}
             <button
               onClick={closeModal}
               className="bg-green-500 rounded-3xl p-2 w-50 my-5 text-white h-10"
