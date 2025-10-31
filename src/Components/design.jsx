@@ -198,7 +198,7 @@ function Design() {
               {/* Mark as paid button */}
             <button
               onClick={openModal}
-              className="text-white bg-green-500 p-2 mx-5 mt-3 h-10 w-60 rounded-3xl"
+              className="text-white bg-green-500 p-2 mt-3 h-10 w-60 rounded-3xl"
             >
               {" "}
               Mark as Paid{" "}
